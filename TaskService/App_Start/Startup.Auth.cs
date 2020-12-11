@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
@@ -22,6 +23,9 @@ namespace TaskService
          */
         public void ConfigureAuth(IAppBuilder app)
         {
+            //display more detailed errors
+            IdentityModelEventSource.ShowPII = true;
+
             TokenValidationParameters tvps = new TokenValidationParameters
             {
                 // Accept only those tokens where the audience of the token is equal to the client ID of this app
